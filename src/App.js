@@ -2,8 +2,9 @@ import React from 'react';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Home from './Views/Home';
-import AddCar from './Views/AddCar';
 import Product from './Views/Car';
+import AddCar from './Views/AddCar'
+import { CarProvider } from './CarContext/CarContext'
 
 import {
   BrowserRouter as Router,
@@ -13,32 +14,34 @@ import {
 
 function App() {
   return (
-    <div className="relative pb-10 min-h-screen">
-      <Router>
+    <CarProvider>
+      <div className="relative pb-10 min-h-screen">
+        <Router>
 
-        <Header />
+          <Header />
 
-        <div className='p-3'>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
+          <div className='p-3'>
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
 
-            <Route path="/AddCar">
-              <AddCar />
-            </Route>
+              <Route path="/AddCar">
+                <AddCar />
+              </Route>
 
-            <Route path="/cars/:id">
-              <Product />
-            </Route>
-          </Switch>
-        </div>
+              <Route path="/cars/:id">
+                <Product />
+              </Route>
+            </Switch>
+          </div>
 
-        <Footer />
+          <Footer />
 
-      </Router>
+        </Router>
 
-    </div>
+      </div>
+    </CarProvider>
   );
 }
 

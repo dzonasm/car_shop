@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { v4 as uuidv4 } from "uuid"
+import { CarContext } from '../CarContext/CarContext'
 
-function AddCar() {
+
+
+
+export default function AddCar(props) {
+    const [newCarList, setNewCarList] = useContext(CarContext)
+
     let [brand, setBrand] = useState('')
     let [name, setName] = useState('')
     let [milage, setMilage] = useState('')
     let [color, setColor] = useState('')
     let [price, setPrice] = useState('')
     let [year, setYear] = useState('')
-
-    console.log('github')
-    // how do i export this??
-    let [newCars, setNewCars] = useState([])
 
 
     const handleBrand = (e) => setBrand(brand = e.target.value)
@@ -42,8 +44,16 @@ function AddCar() {
             year: year,
             image: `https://picsum.photos/200/300`
         }
-        setNewCars(() => newCars.concat(newCar))
+        setNewCarList(() => newCarList.concat(newCar))
+        setBrand('')
+        setName('')
+        setMilage('')
+        setColor('')
+        setPrice('')
+        setYear('')
+
     }
+
 
     return (
         <div className="pt-3 text-center">
@@ -124,6 +134,3 @@ function AddCar() {
         </div>
     )
 }
-
-
-export { AddCar as default }
